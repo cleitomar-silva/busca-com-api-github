@@ -14,6 +14,7 @@ function App() {
   const [avatar, setAvatar] = useState('');
   const [userInput, setUserInput] = useState('');
   const [error, setError] = useState(null);
+  const [biography, setBiography] = useState('');
 
   useEffect(() => {
       fetch('https://api.github.com/users/example')
@@ -32,7 +33,8 @@ function App() {
     public_repos, 
     avatar_url,
     repos_url,
-    html_url  
+    html_url,
+    bio  
   }) => {
     setName(name);
     setUsername(login);
@@ -42,6 +44,7 @@ function App() {
     setRepos(public_repos);
     setAvatar(avatar_url);
     setReposUrl(repos_url);
+    setBiography(bio);
   };
 
   const handleSearch = (e) =>{
@@ -100,6 +103,13 @@ function App() {
               <Icon name='user' />
               {following} Seguido
             </a>
+          </Card.Content>
+          
+          <Card.Content extra>
+          <Icon name='user'/>Biografia
+            <Card.Description>
+              {biography ? (<div>{biography}</div>) : ('nehuma descrição')}
+            </Card.Description>             
           </Card.Content>
         </Card>
       </div>

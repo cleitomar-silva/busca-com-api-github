@@ -16,4 +16,9 @@
 .card{
   display: flex;
   justify-content: center;
+  margin-bottom: 50px;;
+}
+
+.custom-color{
+  color: #999999 !important;
 }
