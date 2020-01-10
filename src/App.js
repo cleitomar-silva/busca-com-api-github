@@ -15,9 +15,10 @@ function App() {
   const [userInput, setUserInput] = useState('');
   const [error, setError] = useState(null);
   const [biography, setBiography] = useState('');
+  const [local, setLocal] = useState('');
 
   useEffect(() => {
-      fetch('https://api.github.com/users/example')
+      fetch('https://api.github.com/users/cleitomar-silva')
         .then(res => res.json())
         .then(data => {
           setData(data);
@@ -34,7 +35,8 @@ function App() {
     avatar_url,
     repos_url,
     html_url,
-    bio  
+    bio,
+    location  
   }) => {
     setName(name);
     setUsername(login);
@@ -45,6 +47,7 @@ function App() {
     setAvatar(avatar_url);
     setReposUrl(repos_url);
     setBiography(bio);
+    setLocal(location)
   };
 
   const handleSearch = (e) =>{
@@ -71,7 +74,8 @@ function App() {
         <Form onSubmit={handleSubmit}>
           <Form.Group>
             <Form.Input placeholder="Github Usuário" name="github" onChange={handleSearch}/>
-            <Form.Button content="Pesquisar" />
+            <Form.Button  content="Pesquisar" />
+            
           </Form.Group>
         </Form>
       </div>
@@ -83,8 +87,9 @@ function App() {
             <Card.Header>
               <a href={urlUser}>
               {userName}
-              </a>              
-            </Card.Header>            
+              </a>                            
+            </Card.Header>
+                       
           </Card.Content>
           <Card.Content extra>
             <a>
@@ -94,19 +99,20 @@ function App() {
           </Card.Content>
           <Card.Content extra>
             <a href={reposUrl}>
-              <Icon name='user' />
+              <Icon name='folder open' />
               {repos} Repositório
             </a>
           </Card.Content>
           <Card.Content extra>
             <a>
-              <Icon name='user' />
-              {following} Seguido
+              <Icon name='map marker alternate' />
+              {local} - Localização
             </a>
           </Card.Content>
           
+          
           <Card.Content extra>
-          <Icon name='user'/>Biografia
+          <Icon name='write square'/>Biografia
             <Card.Description>
               {biography ? (<div>{biography}</div>) : ('nehuma descrição')}
             </Card.Description>             
